@@ -4,7 +4,7 @@
 #include <time.h>
 #include <math.h>
 #include <locale.h>
-#define TASK_5
+#define TASK_2
 
 #ifdef TASK_1
 
@@ -66,12 +66,6 @@ int main() {
 
 #define MAX_LEN 1024
 
-/**
- * count_words_len Ч подсчитать в строке s количество слов длины target_len
- * @param s           Ч входна€ строка (нулевой терминатор)
- * @param target_len  Ч искома€ длина слова
- * @return            Ч количество слов длины target_len
- */
 int count_words_len(const char* s, int target_len) {
     int count = 0;         // итоговый счЄтчик слов
     int curr_len = 0;      // длина текущего слова
@@ -134,13 +128,6 @@ int main() {
 #ifdef TASK_3
 #define MAX_LEN 1024
 
-/**
- * count_words_end_char Ч подсчитать в строке s количество слов,
- * оканчивающихс€ символом target_char
- * @param s           Ч входна€ строка (нулевой терминатор)
- * @param target_char Ч искомый конечный символ слова
- * @return            Ч количество слов, заканчивающихс€ target_char
- */
 int count_words_end_char(const char* s, char target_char) {
     int count = 0;      // итоговый счЄтчик
     int curr_len = 0;   // длина текущего слова
@@ -177,7 +164,7 @@ int main(void) {
     // ввод строки
     printf("¬ведите строку (максимум %d символов):\n", MAX_LEN - 1);
     if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
-        fprintf(stderr, "ќшибка ввода строки.\n");
+        fprintf(stderr, "error.\n");
         return EXIT_FAILURE;
     }
     // удал€ем символ '\n' в конце, если есть
@@ -191,7 +178,7 @@ int main(void) {
     // ввод целевого символа
     printf("¬ведите символ, которым должны заканчиватьс€ слова:\n");
     if (scanf(" %c", &target) != 1) {
-        fprintf(stderr, "ќшибка ввода символа.\n");
+        fprintf(stderr, "error.\n");
         return EXIT_FAILURE;
     }
 
@@ -216,10 +203,9 @@ size_t my_strlen(const char* s) {
     return (size_t)(p - s);
 }
 
-/**
- * match_at Ч провер€ет, начинаетс€ ли в строке s подстрока needle
- * аналог strstr дл€ точного совпадени€ с начала
- */
+
+ //аналог strstr дл€ точного совпадени€ с начала
+
 int match_at(const char* s, const char* needle, size_t needle_len) {
     size_t i;
     for (i = 0; i < needle_len; i++) {
@@ -228,11 +214,6 @@ int match_at(const char* s, const char* needle, size_t needle_len) {
     return 1;
 }
 
-/**
- * replace_child Ч заменить все вхождени€ "child" на "children" в строке s
- * @param s Ч входна€ строка
- * @return  Ч нова€ строка с заменами (нужно освободить вызовом free)
- */
 char* replace_child(const char* s) {
     const char* needle = "child";
     const char* replacement = "children";
@@ -257,7 +238,7 @@ char* replace_child(const char* s) {
     size_t new_len = orig_len + count * (repl_len - needle_len);
     char* result = (char*)malloc(new_len + 1);
     if (!result) {
-        fprintf(stderr, "ќшибка выделени€ пам€ти\n");
+        fprintf(stderr, "error\n");
         exit(EXIT_FAILURE);
     }
 
@@ -315,12 +296,6 @@ const char* int_to_str(int k) {
     return buf;
 }
 
-/**
- * compress_sequence Ч сжатие повтор€ющихс€ символов:
- * последовательности длины >1 замен€ютс€ на x(k)
- * @param s Ч входна€ строка
- * @return Ч нова€ строка с заменами (нужно free)
- */
 char* compress_sequence(const char* s) {
     size_t orig_len = my_strlen(s);
     if (orig_len == 0) {
@@ -348,7 +323,7 @@ char* compress_sequence(const char* s) {
     }
 
     char* result = malloc(new_len + 1);
-    if (!result) { fprintf(stderr, "ќшибка выделени€ пам€ти\n"); exit(EXIT_FAILURE); }
+    if (!result) { fprintf(stderr, "error\n"); exit(EXIT_FAILURE); }
 
     // ѕостроение результирующей строки
     size_t dst = 0;
